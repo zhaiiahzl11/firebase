@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // --- Email Login ---
               TextField(
                 controller: emailCtrl,
                 decoration: InputDecoration(
@@ -46,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 child: loading
                     ? CircularProgressIndicator(color: Colors.white)
-                    : Text("Login"),
+                    : Text("Login with Email"),
                 onPressed: () async {
                   setState(() => loading = true);
                   final user = await auth.signInWithEmail(
@@ -57,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   if (user != null) {
                     if (!user.emailVerified) {
-                      await auth.signOut();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -78,13 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
               ),
-
               TextButton(
                 child: Text("Forgot your password?"),
                 onPressed: () => _openForgotPasswordDialog(context),
               ),
 
-              SizedBox(height: 12),
+              SizedBox(height: 24),
               Row(
                 children: [
                   Expanded(child: Divider()),
@@ -96,7 +93,6 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               SizedBox(height: 24),
-
               ElevatedButton.icon(
                 icon: Icon(Icons.login),
                 label: Text("Sign in with Google"),
@@ -140,7 +136,6 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text("Reset password"),
         content: TextField(
           controller: resetCtrl,
-          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: "Email",
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
@@ -164,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                   content: Text(
                     success
                         ? "Password reset email sent. Please check your inbox."
-                        : "Failed to send reset email. Check the email address.",
+                        : "Failed to send reset email.",
                   ),
                 ),
               );

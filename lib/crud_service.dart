@@ -6,27 +6,33 @@ class CrudService {
   );
 
   Future<void> addItem(String name, int quantity) {
+    //CREATE
     return items.add({
       'name': name,
       'quantity': quantity,
-      'isFavorite': false,
       'createdAt': Timestamp.now(),
+      'isFavorite': false, // ADDED (Favorite filter)
     });
   }
 
+  //READ
   Stream<QuerySnapshot> getItems() {
     return items.orderBy('createdAt', descending: true).snapshots();
   }
 
+  //UPDATE
   Future<void> updateItem(String id, String name, int quantity) {
     return items.doc(id).update({'name': name, 'quantity': quantity});
   }
 
-  Future<void> toggleFavorite(String id, bool isFavorite) {
-    return items.doc(id).update({'isFavorite': isFavorite});
-  }
+  //DELETE
 
   Future<void> deleteItem(String id) {
     return items.doc(id).delete();
+  }
+
+  // ADDED (Favorite filter)
+  Future<void> toggleFavorite(String id, bool isFavorite) {
+    return items.doc(id).update({'isFavorite': isFavorite});
   }
 }

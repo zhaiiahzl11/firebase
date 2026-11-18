@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'auth_service.dart';
 import 'firebase_options.dart';
 import 'home_page.dart';
 import 'login_page.dart';
+
+import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
-            );
+            ); // Scaffold
           }
           if (snapshot.hasData) {
             return HomePage();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
             return LoginPage();
           }
         },
-      ),
-    );
+      ), // StreamBuilder
+    ); // MaterialApp
   }
 }

@@ -68,8 +68,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       );
                     }
-
-                    await auth.signOut();
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (_) => LoginPage()),
