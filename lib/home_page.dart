@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: const Text('Firebase Lastname'),
+        title: const Text('Firebase Lestojas'),
         centerTitle: true,
         backgroundColor: Colors.teal,
         actions: [
